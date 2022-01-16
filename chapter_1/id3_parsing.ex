@@ -4,9 +4,12 @@ defmodule ID3Parser do
     case File.read(file_name) do
 
       {:ok, mp3} ->
+        IO.inspect(mp3)
         mp3_byte_size = byte_size(mp3) - 128
 
+        IO.inspect(mp3_byte_size)
         << _ :: binary-size(mp3_byte_size), id3_tag :: binary >> = mp3
+        IO.inspect(id3_tag)
 
         << "TAG", title   :: binary-size(30),
                   artist  :: binary-size(30),
